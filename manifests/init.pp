@@ -572,7 +572,11 @@ class corosync (
     if $trusted['certname'] == $auth_node
     or $trusted['hostname'] == $auth_node
     or $auth_node == $facts['networking']['ip']
-    or $auth_node in $interface_ip_list {
+    or $auth_node in $interface_ip_list
+    or ($auth_node =~ Array and (
+      $facts['networking']['ip'] in $auth_node
+      or $auth_node.any |$_auth_ip| { $_auth_ip in $interface_ip_list }
+    )) {
       $is_auth_node = true
     } else {
       $is_auth_node = false
