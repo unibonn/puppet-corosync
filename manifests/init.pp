@@ -591,9 +591,10 @@ class corosync (
 
       # As the auth can happen before corosync.conf exists we need to explicitly
       # list the members to join.
-      # TODO - verify that this is safe when quorum_members is a list of IP
-      # addresses
-      $node_string = join($quorum_members, ' ')
+      $node_string = ($quorum_members_names == undef) ? {
+        true    => join($quorum_members, ' '),
+        default => join($quorum_members + $quorum_members_names, ' '),
+      }
 
       # Define the pcs host command, this changed with 0.10.0 as per #513
       $pcs_auth_command = versioncmp($pcs_version, '0.10.0') ? {
