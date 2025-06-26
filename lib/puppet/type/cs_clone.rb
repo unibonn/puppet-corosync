@@ -41,6 +41,23 @@ Puppet::Type.newtype(:cs_clone) do
     defaultto :absent
   end
 
+  newproperty(:master_max) do
+    desc "FIXME How many copies of the resource should have the master role.
+      Defaults to the number of nodes in the cluster."
+
+    newvalues(%r{\d+}, :absent)
+
+    defaultto :absent
+  end
+  newproperty(:master_node_max) do
+    desc "FIXME How many copies of the resource can be in master role on a single node.
+    Defaults to 1."
+
+    newvalues(%r{\d+}, :absent)
+
+    defaultto :absent
+  end
+
   newproperty(:notify_clones) do
     desc "When stopping or starting a copy of the clone, tell all the other copies beforehand
       and when the action was successful.
