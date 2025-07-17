@@ -49,6 +49,7 @@ Puppet::Type.type(:cs_clone).provide(:pcs, parent: PuppetX::Voxpupuli::Corosync:
         ensure: :present,
         clone_max: items['clone-max'],
         clone_node_max: items['clone-node-max'],
+        promotable: items['promotable'],
         master_max: items['master-max'],
         master_node_max: items['master-node-max'],
         notify_clones: items['notify'],
@@ -84,6 +85,7 @@ Puppet::Type.type(:cs_clone).provide(:pcs, parent: PuppetX::Voxpupuli::Corosync:
       group: @resource[:group],
       clone_max: @resource[:clone_max],
       clone_node_max: @resource[:clone_node_max],
+      promotable: @resource[:promotable],
       master_max: @resource[:master_max],
       master_node_max: @resource[:master_node_max],
       notify_clones: @resource[:notify_clones],
@@ -129,6 +131,7 @@ Puppet::Type.type(:cs_clone).provide(:pcs, parent: PuppetX::Voxpupuli::Corosync:
     {
       clone_max: 'clone-max',
       clone_node_max: 'clone-node-max',
+      promotable: 'promotable',
       master_max: 'master-max',
       master_node_max: 'master-node-max',
       notify_clones: 'notify',

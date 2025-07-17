@@ -41,6 +41,14 @@ Puppet::Type.newtype(:cs_clone) do
     defaultto :absent
   end
 
+  newproperty(:promotable) do
+    desc "FIXME Whether the resource is promotable, i.e. there are promoted and unpromoted resources.
+      Defaults to absent."
+
+    newvalues(:true, :false, :absent)
+
+    defaultto :absent
+  end
   newproperty(:master_max) do
     desc "FIXME How many copies of the resource should have the master role.
       Defaults to the number of nodes in the cluster."
